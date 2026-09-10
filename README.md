@@ -1,8 +1,4 @@
-Цель работы: Освоить базовые приёмы работы в командной оболочке Linux, изучить 
-структуру файловой системы, научиться управлять файлами и каталогами, получить навыки 
-работы с текстовыми редакторами nano и vi/vim (с акцентом на vi/vim как обязательный 
-инструмент системного администратора), а также приобрести умение использовать 
-справочную систему.
+Практическая работа 2
 
 Тема: Управление потоками ввода/вывода, работа с интерпретаторами, алиасами, 
 переменными окружения и конвейерами команд
@@ -16,7 +12,7 @@ fish), создание временных и постоянных алиасо�
 Выполнил: студент группы СА-1-25 Кораблев Антон
 
 2.1. Подготовка
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/20497f3f-f5cc-448c-b043-5b6d8f3e8071" />
+![src1]="https://github.com/user-attachments/assets/20497f3f-f5cc-448c-b043-5b6d8f3e8071" />
 
 2.2. Перенаправление потоков ввода/вывода
 
@@ -111,9 +107,91 @@ stderr – в err.txt:
 2.6. Создание постоянных алиасов 
 
 2.6.1. Отредактируйте файл ~/.bashrc. Добавьте в конец: alias up='sudo apt update && sudo apt upgrade -y' ; alias myip='curl ifconfig.me' 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/12daaa0d-2445-4c1f-916c-21e8809b7d48" />
 
 2.6.2. Примените изменения: source ~/.bashrc. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d6b96308-1fdb-4f2c-86d9-3c3612d50d14" />
 
 2.6.3. Проверьте работу алиасов: up (можно отменить Ctrl+C), myip. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a3a48300-e3d9-44c4-ba92-532bf3a58f33" />
 
 2.6.4. (Для zsh пропишите аналогичные алиасы в ~/.zshrc, для fish – в ~/.config/fish/config.fish с синтаксисом alias up "sudo apt update && sudo apt upgrade -y"). 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/66084fd1-364f-4a2d-8485-548e07570098" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a18a6f82-a8d5-4353-abb1-4ac359d2f904" />
+
+2.7. Временные переменные окружения 
+
+2.7.1. В bash создайте локальную переменную TEMP_VAR="temporary". 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6e7e835d-69a2-4c7e-bb65-963780146e1e" />
+
+2.7.2. Выполните echo $TEMP_VAR. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c72a9f08-862d-48d7-91b7-906b8460dde6" />
+
+2.7.3. Запустите bash (дочерняя оболочка) и попробуйте вывести echo $TEMP_VAR. 
+Объясните результат. : в дочернем bash переменная не видна
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3cf1ffd5-137c-4bce-99c5-3e023891a5a3" />
+
+2.7.4. Выйдите из дочерней оболочки (exit). Создайте экспортируемую 
+переменную: export GLOBAL_VAR="exported" 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5697eefd-b0be-4e5e-aa59-9b092fa3ea00" />
+
+2.7.5. Запустите bash и проверьте echo $GLOBAL_VAR. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f865df68-f417-4cea-a270-7a774f3b5de8" />
+
+2.7.6. Удалите переменную: unset GLOBAL_VAR. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0087bae0-f3c6-42cf-931a-eda9d7bcfe6d" />
+
+2.8. Постоянные переменные окружения 
+
+2.8.1. Добавьте в ~/.bashrc строку: export EDITOR="nano" 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e8c75d74-1b3d-4ebc-bd7b-ae7b4e024214" />
+
+2.8.2. Выполните source ~/.bashrc. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0309a2fe-a630-45e6-91a4-84f2886f4b20" />
+
+2.8.3. Проверьте: echo $EDITOR. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c3294e26-d38e-4ef3-8670-5d3238a0aeca" />
+
+2.8.4. Добавьте также export WORKSPACE="$HOME/lab2". 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/bf95f56d-d5f3-4478-a775-3065bc7d5559" />
+
+2.8.5. Проверьте, что после перезапуска терминала эти переменные остаются. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ca748c7c-d856-4c5e-a3ee-02eebfdd6444" />
+
+2.9. Комплексный скрипт (закрепление) 
+Напишите скрипт на bash (файл lab2_script.sh) со следующим функционалом: 
+
+2.9.1. Скрипт принимает один аргумент – имя файла. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/74f0573b-57b2-4f6a-920b-37168cc8dae8" />
+
+2.9.2. Проверяет, передан ли аргумент; если нет – выводит сообщение об ошибке в stderr и завершается с кодом 1. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6c203b0d-20df-4072-945f-e5c687c12327" />
+
+2.9.3. Создаёт временную переменную окружения BACKUP_TIME с текущей датой. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fdfd32fb-fae2-4f21-96ce-48583fba6bd6" />
+
+2.9.4. Создаёт каталог backup в $HOME/lab2, если его нет. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d0e6dc6d-77ea-4bd3-83f1-7fe8e8f28ff8" />
+
+2.9.5. Копирует переданный файл в каталог backup с добавлением суффикса .bak. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d0ca9ff-21c7-4f30-8e0b-72be72665c2e" />
+
+2.9.6. Записывает в файл backup/log.txt строку вида: YYYY-MM-DD HH:MM:SS - скопирован файл <имя> в <путь к бэкапу> (использовать echo и 
+перенаправление >>). 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/67dae1f5-73cd-4e29-ad0f-9607f1c16302" />
+
+2.9.7. Выводит сообщение об успехе в stdout. 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5a9c27ab-af11-4d77-849e-ce01a6c146f7" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/20889613-3700-4afd-8efb-6d7e418c33b3" />
+
+КОНТРОЛЬНЫЕ ВОПРОСЫ:
+4.1. > перезаписывает файл, >> дописывает в конец.
+4.2. ; — выполняет обе команды подряд; && — вторую только при успехе первой.
+4.3. Объединить stdout и stderr: &> file или > file 2>&1.
+4.4. Алиас — сокращение для команды.
+Постоянно: bash/zsh — в ~/.bashrc/~/.zshrc (alias ll='ls -l'); fish — в ~/.config/fish/aliases.fish.
+4.5. export делает переменную видимой в дочерних процессах.
+4.6. Посмотреть переменные окружения: printenv или env.
+4.7. Передача вывода на ввод: через канал |.
+4.8. Fish vs bash: алиасы в fish часто ведут себя как функции; работа с переменными отличается (например, set вместо прямого присваивания, разные флаги области видимости).
+4.9. Перенаправить stdin из файла и stdout в другой: cmd < in.txt > out.txt.
